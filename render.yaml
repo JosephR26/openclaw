@@ -1,4 +1,8 @@
 services:
+    # Render Docker web services require at minimum the "starter" plan ($7/month).
+    # For a fully free deployment use Fly.io instead (see fly.toml).
+    # Free AI providers that work well here: set GROQ_API_KEY, GEMINI_API_KEY,
+    # GH_TOKEN (GitHub Copilot), or HF_TOKEN (Hugging Face).
   - type: web
     name: openclaw
     runtime: docker
@@ -15,6 +19,13 @@ services:
         value: /data/workspace
       - key: OPENCLAW_GATEWAY_TOKEN
         generateValue: true
+      # Free AI API keys — set at least one.
+      # Get a free Groq key at https://console.groq.com
+      - key: GROQ_API_KEY
+        sync: false
+      # Get a free Gemini key at https://aistudio.google.com/app/apikey
+      - key: GEMINI_API_KEY
+        sync: false
     disk:
       name: openclaw-data
       mountPath: /data
