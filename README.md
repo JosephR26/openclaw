@@ -1,14 +1,18 @@
-# 🦞 OpenClaw — Personal AI Assistant
+# OpenClaw — Personal AI Assistant
+
+<p align="center">
+  <img src="docs/assets/gold-claw.svg" alt="OpenClaw Gold Claw" width="200"/>
+</p>
 
 <p align="center">
     <picture>
         <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-logo-text-dark.png">
-        <img src="https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-logo-text.png" alt="OpenClaw" width="500">
+        <img src="https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-logo-text.png" alt="OpenClaw" width="420">
     </picture>
 </p>
 
 <p align="center">
-  <strong>EXFOLIATE! EXFOLIATE!</strong>
+  <strong>Your AI. Your channels. Zero cost.</strong>
 </p>
 
 <p align="center">
@@ -36,6 +40,50 @@ New install? Start here: [Getting started](https://docs.openclaw.ai/start/gettin
 - **[OpenAI](https://openai.com/)** (ChatGPT/Codex)
 
 Model note: while any model is supported, I strongly recommend **Anthropic Pro/Max (100/200) + Opus 4.6** for long‑context strength and better prompt‑injection resistance. See [Onboarding](https://docs.openclaw.ai/start/onboarding).
+
+## Run for Free — Zero Cost Setup
+
+<p align="center">
+  <img src="docs/assets/gold-claw.svg" alt="OpenClaw — run for free" width="120"/>
+</p>
+
+OpenClaw can run **entirely for free** — no credit card required for the AI, no paid hosting plan needed.
+
+| Layer | Free option | What you get |
+|---|---|---|
+| **AI (fast)** | [Groq](https://console.groq.com) — `GROQ_API_KEY` | Llama 3.3 70B, Llama 4, DeepSeek-R1, QwQ-32B — 6k req/day free |
+| **AI (multimodal)** | [Google Gemini](https://aistudio.google.com/app/apikey) — `GEMINI_API_KEY` | 15 RPM / 1M TPM free |
+| **AI (ultra-fast)** | [Cerebras](https://cloud.cerebras.ai) — `CEREBRAS_API_KEY` | Llama 3.3 70B at 2,000+ tok/s free |
+| **AI (via GitHub)** | GitHub Copilot — `GH_TOKEN` | Free with any GitHub account |
+| **AI (open models)** | [OpenRouter](https://openrouter.ai) — `OPENROUTER_API_KEY` | 100s of free models (`:free` suffix) |
+| **Hosting** | [Fly.io](https://fly.io) — `fly.toml` included | 3× shared VMs, persistent volume — free tier |
+| **Hosting (alt)** | Self-host via Docker | Your own machine, completely free |
+
+**Quickstart (completely free in ~5 minutes):**
+
+```bash
+# 1. Install
+npm install -g openclaw@latest
+
+# 2. Get a free Groq key at https://console.groq.com  →  copy it
+export GROQ_API_KEY=gsk_...
+
+# 3. Start the gateway
+openclaw gateway
+
+# 4. Chat!
+openclaw agent --message "Hello! What can you do?"
+```
+
+**Deploy to Fly.io free tier:**
+
+```bash
+fly launch --config fly.toml   # uses shared-cpu-1x / 512mb (free)
+fly secrets set GROQ_API_KEY=gsk_...
+fly deploy
+```
+
+See the full guides: [Setup Guide](docs/SETUP.md) · [User Guide](docs/USER_GUIDE.md)
 
 ## Models (selection + auth)
 
