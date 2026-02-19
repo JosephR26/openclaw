@@ -12,7 +12,7 @@ NODE_ENV = "production"
 # Fly uses x86, but keep this for consistency
 OPENCLAW_PREFER_PNPM = "1"
 OPENCLAW_STATE_DIR = "/data"
-NODE_OPTIONS = "--max-old-space-size=1536"
+NODE_OPTIONS = "--max-old-space-size=384"
 
 [processes]
 app = "node dist/index.js gateway --allow-unconfigured --port 3000 --bind lan"
@@ -20,14 +20,16 @@ app = "node dist/index.js gateway --allow-unconfigured --port 3000 --bind lan"
 [http_service]
 internal_port = 3000
 force_https = true
-auto_stop_machines = false # Keep running for persistent connections
+auto_stop_machines = true  # Sleep when idle to stay within the free tier allowance
 auto_start_machines = true
-min_machines_running = 1
+min_machines_running = 0   # Set to 1 if you need zero-cold-start (uses paid credits)
 processes = ["app"]
 
 [[vm]]
-size = "shared-cpu-2x"
-memory = "2048mb"
+# Free tier: shared-cpu-1x with 256mb fits within Fly.io's free allowance (3 machines).
+# Upgrade to shared-cpu-2x / 2048mb for better performance if needed.
+size = "shared-cpu-1x"
+memory = "512mb"
 
 [mounts]
 source = "openclaw_data"
